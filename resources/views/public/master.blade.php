@@ -96,8 +96,6 @@
 								<li class="radio">
 									<label><input type="radio" name="optradio">$201 - $300+</label>
 								</li>
-							
-								
 							</ul>
 
 							<button type="button" class="action-button previous_button">Back</button>
