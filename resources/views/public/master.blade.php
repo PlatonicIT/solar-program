@@ -32,7 +32,8 @@
 </head>
 <body>
 @include('public.header.header')
-@yield('content')
+@yield('content','')
+
 @include('public.footer.footer')
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -41,11 +42,16 @@
 			<div class="modal-header align-items-center">
 				<!-- progressbar -->
 				<ul id="progressbar">
-					<li class="active">How much is your average monthly electric bill?</li>
-					<li>How much sun does your roof get?</li>
-					<li>How much sun does your roof get?</li>
-					<li>How much sun does your roof get?</li>
-					<li>How much sun does your roof get?</li>
+					@if(\App\Models\Question::all()->count())
+						@foreach(\App\Models\Question::all() as $question)
+						<li class="
+							@if($loop->index==1)
+								active
+							@endif">
+						</li>
+						@endforeach
+					@endif
+
 				</ul>
 
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -59,133 +65,38 @@
 					<form id="msform" action="{{route('test')}}" method="POST">
                         @csrf
 						<!-- fieldsets -->
-						<fieldset>
-							<h3>How much is your average monthly electric bill?</h3>
-
+						@if(\App\Models\Question::all()->count())
+							@foreach(\App\Models\Question::latest()->get() as $question)
+								<fieldset>
+							<h3>{{$question->question}}</h3>
+								<input type="hidden" name="question[{{$question->id}}]" value="{{$question->question}}">
 							<ul class="bills">
-								<li class="radio active">
-									<label><input type="radio" name="optradio" checked>$0 - $100</label>
-								</li>
+								@foreach($question->question_options as $option)
+								@if($option->option_type=='1')
 								<li class="radio">
-									<label><input type="radio" name="optradio">$101 - $200+</label>
+									<label><input required type="radio" name="option[{{$question->id}}]" value="{{$option->question_option}}" >{{$option->question_option}}</label>
 								</li>
+								@elseif($option->option_type=='2')
 								<li class="radio">
-									<label><input type="radio" name="optradio">$201 - $300+</label>
+									<label><input type="text" name="text[]" required>{{$option->question_option}}</label>
 								</li>
-								<li class="radio">
-									<label><input type="radio" name="optradio">$201 - $300+</label>
-								</li>
-								<li class="radio">
-									<label><input type="radio" name="optradio">$201 - $300+</label>
-								</li>
-								<li class="radio">
-									<label><input type="radio" name="optradio">$201 - $300+</label>
-								</li>
-								<li class="radio">
-									<label><input type="radio" name="optradio">$201 - $300+</label>
-								</li>
-								<li class="radio">
-									<label><input type="radio" name="optradio">$201 - $300+</label>
-								</li>
-								<li class="radio">
-									<label><input type="radio" name="optradio">$201 - $300+</label>
-								</li>
-								<li class="radio">
-									<label><input type="radio" name="optradio">$201 - $300+</label>
-								</li>
-								<li class="radio">
-									<label><input type="radio" name="optradio">$201 - $300+</label>
-								</li>
+								@endif
+								@endforeach
 							</ul>
 
 							<button type="button" class="action-button previous_button">Back</button>
 							<button type="button" class="next action-button">Continue</button>
 						</fieldset>
-						<fieldset>
-							<h3>How much sun does your roof get?</h3>
-							
-							<ul class="bills">
-								<li class="radio active">
-									<label><input type="radio" name="roof-get" checked>Full sun most of the day</label>
-								</li>
-								<li class="radio">
-									<label><input type="radio" name="roof-get">Partially Shaded</label>
-								</li>
-								<li class="radio">
-									<label><input type="radio" name="roof-get">Shaded most of the day</label>
-								</li>
-								<li class="radio">
-									<label><input type="radio" name="roof-get">Not sure</label>
-								</li>
-								<li class="radio">
-									<label><input type="radio" name="roof-get">Not sure</label>
-								</li>
-								<li class="radio">
-									<label><input type="radio" name="roof-get">Not sure</label>
-								</li>
-								<li class="radio">
-									<label><input type="radio" name="roof-get">Not sure</label>
-								</li>
-								<li class="radio">
-									<label><input type="radio" name="roof-get">Not sure</label>
-								</li>
 
-							</ul>
-							
-							<button type="button" class="action-button previous previous_button">Back</button>
-							<button type="button" class="next action-button">Continue</button>
-						</fieldset>
-						<fieldset>
-							<h3>Do you own your home?</h3>
-							
-							<ul class="bills">
-								<li class="radio active">
-									<label><input type="radio" name="own-home" checked>Yes, I own my home.</label>
-								</li>
-								<li class="radio">
-									<label><input type="radio" name="own-home">No, I do not own my home.</label>
-								</li>
-							</ul>
-							
-							<button type="button" class="action-button previous previous_button">Back</button>
-							<button type="button" class="next action-button">Continue</button>
-						</fieldset>
-						<fieldset>
-							<h3>What is your name?</h3>
-							
-							<div class="form-inner">
-								<input type="text" name="f_name" placeholder="First Name">
-								<input type="text" name="l_name" placeholder="Last Name">
-							</div>
-							
-							<button type="button" class="action-button previous previous_button">Back</button>
-							<button type="button" class="next action-button">Continue</button>
-						</fieldset>
-						<fieldset>
-							<h3>What is your address?</h3>
-							
-							<div class="form-inner">
-								<input type="text" name="address" placeholder="Street Address">
-								<input type="text" name="zip" placeholder="Zip Code">
-							</div>
-							
-							<button type="button" class="action-button previous previous_button">Back</button>
-							<button type="button" class="next action-button">Continue</button>
-						</fieldset>
-						<fieldset>
-							<h3>What is your contact info?</h3>
-							
-							<div class="form-inner">
-								<input type="text" name="phone" placeholder="Phone Number">
-								<input type="email" name="email" placeholder="Email Address">
-	
-								<p class="mt-3 text-left">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Neque, facilis voluptate? Omnis, voluptates, modi consequatur libero repudiandae deserunt exercitationem laboriosam ea voluptatem eius, labore cumque illo at aliquid alias quas!</p>
-							</div>
-							
-							<button type="button" class="action-button previous previous_button">Back</button>
-							{{--  <a href="#" class="action-button">Finish</a>  --}}
-							<button type="submit" class="action-button">Finish</a>
-						</fieldset>
+							@endforeach
+								<fieldset>
+
+									<button type="button" class="action-button previous previous_button">Back</button>
+									{{--<a href="#" class="action-button">Finish</a>--}}
+									<button type="submit" class="action-button">Finish</button>
+								</fieldset>
+						@endif
+
 					</form>
 				</section>
 				<!-- End Multi step form -->
@@ -208,7 +119,6 @@
     <!-- Code injected by live-server -->
     <script type="text/javascript" src="{{ asset('assets/js/svgsupport.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/developerjs.js') }}"></script>
-    
     @stack('js')
    
     

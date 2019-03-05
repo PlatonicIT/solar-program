@@ -105,8 +105,6 @@ class QuestionController extends Controller
                     return 'Radio';
                 }elseif ($data=='2'){
                     return 'Text';
-                }elseif ($data=='3'){
-                    return 'Checkbox';
                 }
             });
 
@@ -136,7 +134,7 @@ class QuestionController extends Controller
         $form->text('question', 'Question')->rules('required|min:5|max:191')->required();
         $form->hasMany('question_options', function (Form\NestedForm $form) {
             $form->text('question_option')->rules('required|min:2|max:100');
-            $form->select('option_type','Option Type')->options(['1'=>'Radio','2'=>'Text','3'=>'Checkbox'])->default(1);
+            $form->select('option_type','Option Type')->options(['1'=>'Radio','2'=>'Text'])->default(1);
 
         });
 

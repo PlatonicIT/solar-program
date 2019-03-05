@@ -1,10 +1,10 @@
 ;(function($) {
-    "use strict";  
+    "use strict";
 
     $('.bills li').on('click', function(){
         $(this).addClass('active').siblings().removeClass('active');
     });
-    
+
     //* Form js
     function verificationForm(){
         //jQuery time
@@ -102,15 +102,15 @@
         $(".submit").click(function () {
             return false;
         })
-    }; 
-    
+    };
+
     //* Select js
     function nice_Select(){
-        if ( $('.product_select').length ){ 
+        if ( $('.product_select').length ){
             $('select').niceSelect();
         };
-    }; 
-    /*Function Calls*/  
+    };
+    /*Function Calls*/
     verificationForm ();
     nice_Select ();
-})(jQuery); 
+})(jQuery);
