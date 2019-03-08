@@ -1,9 +1,6 @@
 @extends('public.master')
 @push('js')
-    <script>
-       var zipcode =  document.getElementById('zipcode').value;
-       document.write(zipcode);
-    </script>
+
 @endpush
 @push('css')
   <style>
@@ -20,8 +17,10 @@
                     <h3>Compare quotes from up to four local home service companies.</h3>
                     <div class="quote-box">
                         <p>Start your project today!</p>
-                        <input id="zipcode" name="zipcode" type="text" placeholder="Enter your zip code">
-                        <button type="button" class="button" data-toggle="modal" data-target="#exampleModal">Get Quotes</button>
+                        <p class="text-danger" v-if="this.error">@{{ this.error.zipcode }} </p>
+                        <input id="zipcode"  name="zipcode" v-model="zipcode" type="text" placeholder="Enter your zip code">
+                        <button @click="surVey()" type="button" class="button" data-toggle="modal" :data-target="!validate ? '#exampleModal': '' ">Get Quotes</button>
+                        
                     </div>
                 </div>
             </div>

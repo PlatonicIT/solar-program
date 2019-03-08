@@ -48848,10 +48848,37 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 var app = new Vue({
   el: '#app',
-  data: function data() {
-    return {
-      txt: 'this is test'
-    };
+  data: {
+    validate: true,
+    error: '',
+    zipcode: ''
+  },
+  methods: {
+    surVey: function surVey() {
+      var _this = this;
+
+      axios.post('validate-survey', {
+        zipcode: this.zipcode
+      }).then(function (res) {
+        _this.validate = false;
+        _this.error = '';
+      }).catch(function (error) {
+        if (error.response.status == 422) {
+          _this.validate = true;
+          _this.error = error.response.data.errors;
+        } else {
+          _this.validate = false;
+        }
+      });
+    },
+    testSurvey: function testSurvey() {
+      if (this.validate == false) {
+        this.surVey();
+      }
+    }
+  },
+  created: function created() {
+    this.testSurvey();
   }
 });
 

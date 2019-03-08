@@ -15,7 +15,8 @@ class CreateQuestionOptionsTable extends Migration
     {
         Schema::create('question_options', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('question_id')->nullable();
+            $table->unsignedBigInteger('question_id')->nullable();
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
             $table->string('question_option')->nullable();
             $table->string('option_type')->nullable()->comment('1=>radio,2=>text,3=>checkbox');
 

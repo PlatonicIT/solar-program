@@ -6,7 +6,7 @@
 .multi_step_form #msform {
     text-align: center;
     position: relative;
-
+    min-height: 220px;
     max-width: 810px;
     margin: 0 auto;
     background: #ffffff;

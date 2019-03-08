@@ -8,12 +8,13 @@
                         Copyright 
                           {{ \Carbon\Carbon::now()->year }}
 						Solar Program All Rights Reserved
+						</span>
 					</p>
 				</div>
 
 				<div class="col-lg-6 text-right">
 					<ul class="footer-menu">
-						<li><a href="#">Home</a></li>
+						<li><a href="{{url('/')}}">Home</a></li>
 						<li><a href="$">Privacy Policy</a></li>
 						<li><a href="#">Terms and Conditions</a></li>
 					</ul>

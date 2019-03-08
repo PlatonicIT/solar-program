@@ -15,6 +15,5 @@ Route::get('/', function () {
     return view('public.home');
 });
 
-Route::post('test',function(Request $request){
-return $request->all();
-})->name('test');
+Route::post('survey','SurveyController@received_survey')->name('survey');
+Route::post('validate-survey','SurveyController@survey_validation')->name('survey.validation');
