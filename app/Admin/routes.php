@@ -13,5 +13,6 @@ Route::group([
     $router->get('/', 'HomeController@index');
     $router->resource('question', QuestionController::class);
     $router->resource('question-option', QuestionOptionController::class);
+    $router->resource('setting', SettingController::class);
 
 });

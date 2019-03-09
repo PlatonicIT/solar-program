@@ -9,10 +9,15 @@
     <meta name="author" content="csesumonpro">
 
 	<!-- Site Title -->
-	<title>@yield('title','Home - This is your site title')</title>
+	<title>@yield('title','Home - Solar Program')</title>
 
 	<!-- Favicon Icon -->
+	@if((isset(\App\Models\Setting::first()->favicon)))
+	<link href="{{ asset('storage')."/".\App\Models\Setting::first()->favicon }}" rel="shortcut icon" type="image/png">
+	@else
 	<link href="{{ asset('assets/images/default/favicon.png') }}" rel="shortcut icon" type="image/png">
+	@endif
+	
 	
 	<!-- Google Fonts -->
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300i,400,400i,500,700,900">
@@ -60,7 +65,6 @@
 					@endif
 
 				</ul>
-
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 				</button>
@@ -75,26 +79,28 @@
 							@foreach(\App\Models\Question::latest()->get() as $question)
 								<fieldset>
 							<h3>{{$question->question}}</h3>
-								<input type="hidden" name="question[{{$question->id}}]" value="{{$question->question}}">
-								{{--<input type="hidden" name="zipcode" v-model="zipcode">--}}
+							<input type="hidden" name="question[{{$question->id}}]" value="{{$question->question}}">
+								<input type="hidden" name="zipcode" v-model="zipcode">
 							<ul class="bills">
 								@foreach($question->question_options as $option)
-								@if($option->option_type=='1')
+								@php
+									if($option->option_type=='1'){
+										$type = 'radio'
+									}elseif($option->option_type=='2'){
+										$type = 'text'
+									}
+								@endphp
 								<li class="radio">
-									<label><input required type="radio" name="option[{{$question->id}}]" value="{{$option->question_option}}" >{{$option->question_option}}</label>
+									<label><input type="{{$type}}"  name="option[{{$question->id}}]" value="{{$option->question_option}}" >{{$option->question_option}}</label>
 								</li>
-								@elseif($option->option_type=='2')
-								<li class="radio">
-									<label><input type="text" name="text[]" required>{{$option->question_option}}</label>
-								</li>
-								@endif
+								
 								@endforeach
 							</ul>
 							@if($loop->index==0)
                             <a class="action-button " href="{{url('/')}}">back</a>
 
 							@else
-							<button type="button" class="action-button previous previous_button">Back</button>
+							<button type="button"  class="action-button previous previous_button">Back</button>
 							@endif
                             @if($loop->last)
                                 <button type="submit" class="action-button">Finish</button>

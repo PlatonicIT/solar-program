@@ -1,5 +1,7 @@
 <?php
-use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Artisan;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,10 +12,15 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('storage-link',function(){
+    Artisan::call('storage:link');
+});
+
 
 Route::get('/', function () {
     return view('public.home');
 });
 
 Route::post('survey','SurveyController@received_survey')->name('survey');
-Route::post('validate-survey','SurveyController@survey_validation')->name('survey.validation');
+Route::post('validate-zipcode','SurveyController@zipcode_validation')->name('zipcode.validation');
+Route::post('validate-answer','SurveyController@answer_validation')->name('answer.validation');

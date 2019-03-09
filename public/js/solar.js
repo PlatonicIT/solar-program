@@ -48846,39 +48846,62 @@ if (token) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+var phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,7}$/gm;
 var app = new Vue({
   el: '#app',
   data: {
-    validate: true,
+    validate: false,
+    optionerror: false,
     error: '',
-    zipcode: ''
+    zipcode: '',
+    txt: [],
+    opt: {}
+  },
+  computed: {
+    zipvalid: function zipvalid() {
+      if (this.zipcode != '' && this.zipcode.length == 5) {
+        this.error = "Please enter valid zip code";
+        return this.error;
+      }
+    }
   },
   methods: {
     surVey: function surVey() {
       var _this = this;
 
-      axios.post('validate-survey', {
+      axios.post('/validate-zipcode', {
         zipcode: this.zipcode
       }).then(function (res) {
-        _this.validate = false;
         _this.error = '';
+        _this.validate = true;
       }).catch(function (error) {
+        _this.validate = false;
+
         if (error.response.status == 422) {
-          _this.validate = true;
           _this.error = error.response.data.errors;
-        } else {
-          _this.validate = false;
         }
       });
     },
-    testSurvey: function testSurvey() {
-      if (this.validate == false) {
-        this.surVey();
-      }
+    nextSurvey: function nextSurvey() {
+      var _this2 = this;
+
+      axios.post('/validate-answer', {
+        text: this.txt,
+        option: this.opt
+      }).then(function (res) {
+        _this2.optionerror = true, console.log(res.data);
+      }).catch(function (err) {
+        if (error.response.status == 422) {
+          _this2.error = error.response.data.errors;
+          console.log(_this2.error);
+        }
+      });
     }
   },
-  created: function created() {
-    this.testSurvey();
+  watch: {
+    valid: function valid() {
+      this.validate;
+    }
   }
 });
 
