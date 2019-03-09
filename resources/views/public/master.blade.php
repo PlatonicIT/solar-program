@@ -36,12 +36,15 @@
     <style>
         #progressbar li {
             width: calc(100%/{{\App\Models\Question::all()->count()}});
-        }
+		}
+		[v-cloak] {
+			display: none;
+		  }
     </style>
     @stack('css')
 </head>
 <body>
-<div id="app">
+<div id="app" v-cloak>
 @include('public.header.header')
 @yield('content','')
 
@@ -79,26 +82,26 @@
 							@foreach(\App\Models\Question::latest()->get() as $question)
 								<fieldset>
 							<h3>{{$question->question}}</h3>
-							<input type="hidden" name="question[{{$question->id}}]" value="{{$question->question}}">
 								<input type="hidden" name="zipcode" v-model="zipcode">
+								
 							<ul class="bills">
 								@foreach($question->question_options as $option)
+								
 								@php
 									if($option->option_type=='1'){
-										$type = 'radio'
+										$type = 'radio';
 									}elseif($option->option_type=='2'){
-										$type = 'text'
+										$type = 'text';
 									}
 								@endphp
 								<li class="radio">
-									<label><input type="{{$type}}"  name="option[{{$question->id}}]" value="{{$option->question_option}}" >{{$option->question_option}}</label>
+									<label><input type="{{$type}}"  name="option"  >{{ $option->question_option }}</label>
 								</li>
 								
 								@endforeach
 							</ul>
 							@if($loop->index==0)
                             <a class="action-button " href="{{url('/')}}">back</a>
-
 							@else
 							<button type="button"  class="action-button previous previous_button">Back</button>
 							@endif

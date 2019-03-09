@@ -25,7 +25,8 @@ const app = new Vue({
 	  },
       methods:{
         surVey(){
-            axios.post('/validate-zipcode',{zipcode:this.zipcode})
+            
+                axios.post('/validate-zipcode',{zipcode:this.zipcode})
                 .then(res=>{
                     this.error = '';
                     this.validate = true;
@@ -36,6 +37,7 @@ const app = new Vue({
                         this.error = error.response.data.errors;
                     }
                 })
+           
         },
        
         nextSurvey(){

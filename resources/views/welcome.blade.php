@@ -66,8 +66,11 @@
     </head>
     <body>
 	<div id="app">
-		@{{txt}}
+      
         <div class="flex-center position-ref full-height">
+                @isset($survey)
+              
+               @endisset
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
