@@ -30,6 +30,9 @@
                 @endif    
                     <div class="quote-box">
                         <p>Start your project today!</p>
+                        @if(Session::get('success'))
+                          <p class="text-success">{{Session::get('success')}}</p>
+                        @endif
                         <p class="text-danger" v-if="this.error">@{{ this.error.zipcode }} </p>
                         <input @keyup="surVey" id="zipcode"  name="zipcode" v-model="zipcode" type="text" placeholder="Enter your zip code">
                         <button  type="button" class="button" data-toggle="modal" v-if="validate && zipvalid" data-target="#exampleModal">Get Quotes</button>

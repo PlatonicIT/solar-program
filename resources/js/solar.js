@@ -1,8 +1,5 @@
-
 require('./bootstrap');
 window.Vue = require('vue');
-
-const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,7}$/gm;
 
 const app = new Vue({
     el: '#app',
@@ -12,7 +9,8 @@ const app = new Vue({
           error:'',
           zipcode:'',
           txt:[],
-          opt:{},   
+          opt:{},
+          field:[],
       },
 	  computed: {
 		  zipvalid(){
@@ -20,12 +18,10 @@ const app = new Vue({
                    this.error = "Please enter valid zip code";
                    return this.error;
               }
-          }
-         
+          },
 	  },
       methods:{
         surVey(){
-            
                 axios.post('/validate-zipcode',{zipcode:this.zipcode})
                 .then(res=>{
                     this.error = '';

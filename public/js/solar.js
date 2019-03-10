@@ -48846,7 +48846,6 @@ if (token) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-var phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,7}$/gm;
 var app = new Vue({
   el: '#app',
   data: {
@@ -48855,7 +48854,8 @@ var app = new Vue({
     error: '',
     zipcode: '',
     txt: [],
-    opt: {}
+    opt: {},
+    field: []
   },
   computed: {
     zipvalid: function zipvalid() {

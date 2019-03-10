@@ -18,4 +18,5 @@
  *
  */
  Admin::css(asset('assets/css/developer.css'));
+ Admin::js(asset('assets/js/developerjs.js'));
 Encore\Admin\Form::forget(['map']);

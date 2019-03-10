@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -95,7 +94,7 @@
 									}
 								@endphp
 								<li class="radio">
-									<label><input type="{{$type}}"  name="option"  >{{ $option->question_option }}</label>
+									<label><input  v-model="field{{$question->id}}" type="{{$type}}" @if($type=='text') name="answer[{{$question->question}}][{{$type}}][{{$option->question_option}}]" @else name="answer[{{$question->question}}][{{$type}}]" @endif @if($type=='radio') value="{{ $option->question_option }}" @endif >{{ $option->question_option }}</label>
 								</li>
 								
 								@endforeach
@@ -109,6 +108,7 @@
                                 <button type="submit" class="action-button">Finish</button>
                             @else
                                 <button type="button" class="next action-button">Continue</button>
+                                {{--<button type="button" v-else class="action-button">Continue</button>--}}
                             @endif
 						</fieldset>
 							@endforeach

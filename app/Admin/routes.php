@@ -14,5 +14,7 @@ Route::group([
     $router->resource('question', QuestionController::class);
     $router->resource('question-option', QuestionOptionController::class);
     $router->resource('setting', SettingController::class);
-
+    $router->resource('answer', AnswerController::class);
+    
+    $router->get('survey-answer/{id}', 'AnswerController@answer_by_zipcode')->name('answer');
 });

@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Survey extends Model
 {
   
-    // protected $casts = [
-    //     'survey' => 'json'
-    // ];
+    protected $casts = [
+        'survey' => 'json'
+    ];
 
 }
