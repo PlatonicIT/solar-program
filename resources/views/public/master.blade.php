@@ -36,6 +36,7 @@
         #progressbar li {
             width: calc(100%/{{\App\Models\Question::all()->count()}});
 		}
+		.invalid{pointer-events: none}
 		[v-cloak] {
 			display: none;
 		  }
@@ -94,7 +95,18 @@
 									}
 								@endphp
 								<li class="radio">
-									<label><input  v-model="field{{$question->id}}" type="{{$type}}" @if($type=='text') name="answer[{{$question->question}}][{{$type}}][{{$option->question_option}}]" @else name="answer[{{$question->question}}][{{$type}}]" @endif @if($type=='radio') value="{{ $option->question_option }}" @endif >{{ $option->question_option }}</label>
+									<label>
+										<input  
+										@change="optionValid({{ $question->id }},{{ $option->id }})"
+										 @keyup="optionValid({{ $question->id }},{{ $option->id }})"
+									
+
+										  type="{{$type}}" @if($type=='text')  
+										  v-model="text['{{ $option->id }}']"
+										   name="answer[{{$question->question}}][{{$type}}][{{$option->question_option}}]" 
+										   @else v-model="option['{{ $question->id }}']" name="answer[{{$question->question}}][{{$type}}]" @endif
+											@if($type=='radio')  value="{{ $option->question_option }}" @endif >{{ $option->question_option }}
+										</label>
 								</li>
 								
 								@endforeach
@@ -102,13 +114,12 @@
 							@if($loop->index==0)
                             <a class="action-button " href="{{url('/')}}">back</a>
 							@else
-							<button type="button"  class="action-button previous previous_button">Back</button>
+							<button @click.prevent="trueIsActive"  type="button"  class="action-button previous previous_button">Back</button>
 							@endif
                             @if($loop->last)
                                 <button type="submit" class="action-button">Finish</button>
-                            @else
-                                <button type="button" class="next action-button">Continue</button>
-                                {{--<button type="button" v-else class="action-button">Continue</button>--}}
+							@else
+                                <button @click.prevent="flaseIsActive" type="button" :class="!isActive ? 'invalid' : 'valid' "  class="next action-button">Continue</button>
                             @endif
 						</fieldset>
 							@endforeach

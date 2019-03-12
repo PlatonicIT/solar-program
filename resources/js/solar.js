@@ -1,16 +1,17 @@
 require('./bootstrap');
 window.Vue = require('vue');
+window.solar = new Vue();
+import _ from 'lodash'
 
 const app = new Vue({
     el: '#app',
 	  data:{
           validate:false,
-          optionerror:false,
           error:'',
           zipcode:'',
-          txt:[],
-          opt:{},
-          field:[],
+          text:[],
+          option:[],
+          isActive:false,
       },
 	  computed: {
 		  zipvalid(){
@@ -33,31 +34,38 @@ const app = new Vue({
                         this.error = error.response.data.errors;
                     }
                 })
-           
         },
        
-        nextSurvey(){
-            axios.post('/validate-answer',{text:this.txt,option:this.opt})
-            .then(res=>{
-                this.optionerror = true,
-                console.log(res.data)
-            })
-            .catch(err=>{
-              
-                if (error.response.status == 422){
-                    this.error = error.response.data.errors;
-                    console.log(this.error)
-                }
-            })
+        optionValid(id,optionId){
+            
+        if(this.option!=''){
+          
+            for(var opt in this.option){
+                if(opt==id){
+                    this.isActive = true;
+                } 
+            }
         }
-       
+        if(this.text!=''){ 
+            for(var txt in this.text){
+                if(txt == optionId ){
+                    this.isActive = true;
+                   }
+             } 
+        }    
       },
-      watch:{
-          valid(){
-              this.validate
-          }
+      flaseIsActive(){
+        this.isActive = false; 
+      },
+      trueIsActive(){
+        this.isActive = true;  
       }
-     
+       
+        
+        
+      },
+    
+    
      
     
 

@@ -21,11 +21,5 @@ class SurveyController extends Controller
         ]);
         return response()->json(['status' => 'ok'], 200);
     }
-    public function answer_validation(Request $request)
-    {
-        $request->validate([
-            'text' => 'required',
-        ]);
-        return $request->all();
-    }
+ 
 }

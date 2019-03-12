@@ -48840,22 +48840,27 @@ if (token) {
 /*!*******************************!*\
   !*** ./resources/js/solar.js ***!
   \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+window.solar = new Vue();
+
 var app = new Vue({
   el: '#app',
   data: {
     validate: false,
-    optionerror: false,
     error: '',
     zipcode: '',
-    txt: [],
-    opt: {},
-    field: []
+    text: [],
+    option: [],
+    isActive: false
   },
   computed: {
     zipvalid: function zipvalid() {
@@ -48882,25 +48887,28 @@ var app = new Vue({
         }
       });
     },
-    nextSurvey: function nextSurvey() {
-      var _this2 = this;
-
-      axios.post('/validate-answer', {
-        text: this.txt,
-        option: this.opt
-      }).then(function (res) {
-        _this2.optionerror = true, console.log(res.data);
-      }).catch(function (err) {
-        if (error.response.status == 422) {
-          _this2.error = error.response.data.errors;
-          console.log(_this2.error);
+    optionValid: function optionValid(id, optionId) {
+      if (this.option != '') {
+        for (var opt in this.option) {
+          if (opt == id) {
+            this.isActive = true;
+          }
         }
-      });
-    }
-  },
-  watch: {
-    valid: function valid() {
-      this.validate;
+      }
+
+      if (this.text != '') {
+        for (var txt in this.text) {
+          if (txt == optionId) {
+            this.isActive = true;
+          }
+        }
+      }
+    },
+    flaseIsActive: function flaseIsActive() {
+      this.isActive = false;
+    },
+    trueIsActive: function trueIsActive() {
+      this.isActive = true;
     }
   }
 });

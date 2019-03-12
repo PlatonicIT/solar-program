@@ -18,4 +18,3 @@ Route::get('/', function () {
 });
 Route::post('survey','SurveyController@received_survey')->name('survey');
 Route::post('validate-zipcode','SurveyController@zipcode_validation')->name('zipcode.validation');
-Route::post('validate-answer','SurveyController@answer_validation')->name('answer.validation');
