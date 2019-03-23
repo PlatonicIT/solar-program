@@ -10,7 +10,7 @@
 .home_heading {
 	color:#ffffff!important
 }
-.home_heading h1,h2,h3,h4,h5,h6,strong{
+.home_heading h1,h2,h4,h5,h6,strong{
 	margin-bottom: 15px;
 	color:#ffffff !important
 }

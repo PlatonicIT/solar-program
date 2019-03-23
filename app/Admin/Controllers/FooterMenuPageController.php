@@ -84,7 +84,7 @@ class FooterMenuPageController extends Controller
             $id = $actions->getKey();
             $actions->append("<a class='btn btn-sm btn-info' href='footer-menu/{$id}/' style='margin-right: 5px;'><i class='fa fa-eye'> Details</i></a>");
             $actions->append("<a class='btn btn-sm btn-success' href='footer-menu/{$id}/edit' style='margin-right: 5px;'><i class='fa fa-edit'> Edit</i></a>");
-            $actions->append(new DeleteQuestion($id));
+            $actions->append(new DeleteMenu($id));
 
             $actions->disableEdit();
             $actions->disableView();
