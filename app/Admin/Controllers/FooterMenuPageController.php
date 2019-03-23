@@ -1,15 +1,16 @@
 <?php
+
 namespace App\Admin\Controllers;
-use App\Models\Survey;
+
+use App\Models\FooterMenuPage;
 use App\Http\Controllers\Controller;
-use App\Admin\Controllers\DeleteAnswer;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 
-class AnswerController extends Controller
+class FooterMenuPageController extends Controller
 {
     use HasResourceActions;
 
@@ -76,30 +77,23 @@ class AnswerController extends Controller
      *
      * @return Grid
      */
-    public function answer_by_zipcode($id=null, Content $content){
-        $survey = Survey::findOrFail($id);
-        return $content
-            ->header('View Survey')
-            ->body(view('admin/answer', compact('survey')));
-    }
-
     protected function grid()
     {
-        $grid = new Grid(new Survey);
-        $grid->model()->orderBy('id','desc');
+        $grid = new Grid(new FooterMenuPage);
         $grid->actions(function ($actions) {
             $id = $actions->getKey();
-            $actions->append("<a class='btn btn-sm btn-info' href='survey-answer/{$id}' style='margin-right: 5px;'><i class='fa fa-eye'> Details</i></a>");
-
-            $actions->append(new DeleteAnswer($id));
+            $actions->append("<a class='btn btn-sm btn-info' href='footer-menu/{$id}/' style='margin-right: 5px;'><i class='fa fa-eye'> Details</i></a>");
+            $actions->append("<a class='btn btn-sm btn-success' href='footer-menu/{$id}/edit' style='margin-right: 5px;'><i class='fa fa-edit'> Edit</i></a>");
+            $actions->append(new DeleteQuestion($id));
 
             $actions->disableEdit();
             $actions->disableView();
             $actions->disableDelete();
         });
-        $grid->id('Id');
-        $grid->zipcode('Zipcode')->sortable();;
-//        $grid->survey('Survey');
+    
+        $grid->menu_name('Menu name');
+        $grid->menu_title('Menu title');
+        $grid->menu_body('Menu Body')->limit(50);
         $grid->created_at('Created at');
         $grid->updated_at('Updated at');
 
@@ -114,11 +108,14 @@ class AnswerController extends Controller
      */
     protected function detail($id)
     {
-        $show = new Show(Survey::findOrFail($id));
-        $show->zipcode('Zipcode');
-        $show->survey('Survey')->as(function($data){
-            dd($data);
-        });
+        $show = new Show(FooterMenuPage::findOrFail($id));
+
+    
+        $show->menu_name('Menu name');
+        $show->menu_title('Menu title');
+        $show->menu_body('Menu Body')->unescape();
+      
+
         return $show;
     }
 
@@ -129,9 +126,12 @@ class AnswerController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new Survey);
-        $form->text('zipcode', 'Zipcode');
-        $form->textarea('survey', 'Survey');
+        $form = new Form(new FooterMenuPage);
+
+        $form->text('menu_name', 'Menu name')->required()->rules('required|min:2|max:100');
+        $form->text('menu_title', 'Menu title')->required()->rules('required|min:2|max:100');
+        $form->editor('menu_body', 'Menu body')->required()->rules('min:100');
+
         return $form;
     }
 }

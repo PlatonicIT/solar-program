@@ -1,4 +1,4 @@
-<h1 style="text-align: center">ZipCode => {{$survey->zipcode}}</h1>
+<h1 style="text-align: center">ZipCode <i class="fa fa-angle-double-right"></i> {{$survey->zipcode}}</h1>
 <div class="container faq_section">
     @foreach($survey->survey as $key=>$answer)
     <div class="FaQ_Each">
@@ -15,7 +15,7 @@
             @endisset
             @isset($answer['text'])
                 @foreach($answer['text'] as $itemkey=>$item)
-                    <h3>{{$itemkey}} => {{$item}}</h3>
+                    <h3>{{$itemkey}} <i class="fa fa-angle-double-right"></i> {{$item}}</h3>
                 @endforeach
             @endisset
         </section>

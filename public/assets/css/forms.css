@@ -333,6 +333,7 @@
     font: 700 14px/40px "Roboto", sans-serif;
     border: 1px solid #f6931d;
     margin: 0 5px;
+    margin-top: 30px;
     text-transform: uppercase;
     display: inline-block;
     transition: all 0.3s;

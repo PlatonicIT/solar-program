@@ -16,9 +16,14 @@
 
 				<div class="col-lg-6 text-right">
 					<ul class="footer-menu">
-						<li><a href="{{url('/')}}">Home</a></li>
-						<li><a href="#">Privacy Policy</a></li>
-						<li><a href="#">Terms and Conditions</a></li>
+						<!-- <li><a href="{{url('/')}}">Home</a></li> -->
+						@if(\App\Models\FooterMenuPage::all()->count())
+							@foreach (\App\Models\FooterMenuPage::all() as $menu)
+					<li><a target="_blank" href="{{route('view.page',$menu->id)}}">{{$menu->menu_name}}</a></li>
+							@endforeach
+						@endif
+					
+						
 					</ul>
 				</div>
 			</div>

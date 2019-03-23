@@ -5,6 +5,9 @@
         $(this).addClass('active').siblings().removeClass('active');
     });
 
+    // Hide Error
+    $("#notice").delay(3000).fadeOut();
+
     //* Form js
     function verificationForm(){
         //jQuery time

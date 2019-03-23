@@ -71,17 +71,30 @@ input[type=text], input[type=email] {
     padding: 9px 19px;
     transition: border-color .15s ease;
     width: 100%;
-  }
+}
   
-  input[type=text]:focus, input[type=email]:focus {
+input[type=text]:focus, input[type=email]:focus {
     background: #fff;
     border-color: #8a8a8a;
     box-shadow: none;
-  }
+}
   
-  input[type=text]+input[type=text], input+input[type=email] {
+input[type=text]+input[type=text], input+input[type=email] {
     margin-top: 15px;
-  }
+}
+
+#app {
+    height: 100%;
+    background: #ddd;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
 
 .bg {
     background-color: #ddd;
@@ -128,9 +141,6 @@ input[type=text], input[type=email] {
 
 
 .nav-wrap {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     z-index: 9;
     color: #fff;
@@ -275,17 +285,9 @@ input[type=text], input[type=email] {
 .main-menu li:last-child a {
     padding-right: 0;
 }
-
 .banner-wrap {
-    height: 100vh;
-    background: #ddd;
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: relative;
-    z-index: 3;
-    color: #fff;
+    margin-top: 10px;
 }
-
 .banner-wrap::after {
     position: absolute;
     z-index: -1;
@@ -316,12 +318,16 @@ input[type=text], input[type=email] {
 .quote-box {
     background: #fff;
     max-width: 500px;
-    margin: 0 auto;
-    padding: 20px 70px;
+    margin: 0 auto 30px;
+    padding: 20px 24px;
     border-radius: 5px;
     box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
     font-size: 20px;
     color: #333;
+}
+
+.zipCodeDiv {
+    padding: 0 46px;
 }
 
 .quote-box p {
@@ -335,11 +341,16 @@ input[type=text], input[type=email] {
     text-align: center;
 }
 
+.quote-box [class*="text-"] {
+    font-size: 80%;
+    margin-top: 10px;
+    position: relative;
+    margin-bottom: -12px;
+    font-weight: 300;
+}
+
 .footer-wrap {
-    position: absolute;
-    bottom: 0;
     z-index: 9;
-    left: 0;
     width: 100%;
     color: #fff;
     font-size: 16px;
@@ -385,4 +396,39 @@ input[type=text], input[type=email] {
 
 .footer-menu li:first-child:before {
     display: none;
+}
+
+
+@media only screen and (max-width: 767px) {
+    .slicknav_menu {
+        position: unset;
+        left: unset;
+        top: unset;
+    }
+    .slicknav_menu img {
+        width: 175px;
+    }
+    .home_heading h1 {
+        font-size: 18px;
+    }
+    .quote-box {
+        padding: 15px;
+    }
+    .zipCodeDiv input {
+        font-size: 15px;
+    }
+    #app {
+        height: calc(100% - 74px);
+        min-height: calc(100vh - 74px);
+    }
+    .banner-wrap {
+        display: flex;
+        flex: 1;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .copyright {
+        font-size: 12px;
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Admin\Controllers;
 
 use App\Models\Question;
 use App\Http\Controllers\Controller;
+use App\Admin\Controllers\DeleteQuestion;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -80,8 +81,18 @@ class QuestionController extends Controller
     protected function grid()
     {
         $grid = new Grid(new Question);
-        $grid->model()->orderBy('id','desc');
-        $grid->question('Question');
+        $grid->model()->orderBy('id','asc');
+        $grid->actions(function ($actions) {
+            $id = $actions->getKey();
+            $actions->append("<a class='btn btn-sm btn-info' href='question/{$id}/edit' style='margin-right: 5px;'><i class='fa fa-eye'> Details</i></a>");
+            $actions->append("<a class='btn btn-sm btn-success' href='question/{$id}/edit' style='margin-right: 5px;'><i class='fa fa-edit'> Edit</i></a>");
+            $actions->append(new DeleteQuestion($id));
+
+            $actions->disableEdit();
+            $actions->disableView();
+            $actions->disableDelete();
+        });
+        $grid->question('Question')->sortable();
         $grid->created_at('Created at');
         $grid->updated_at('Updated at');
 
@@ -134,8 +145,7 @@ class QuestionController extends Controller
         $form->text('question', 'Question')->rules('required|min:5|max:191')->required();
         $form->hasMany('question_options', function (Form\NestedForm $form) {
             $form->text('question_option')->rules('required|min:2|max:100');
-            $form->select('option_type','Option Type')->options(['1'=>'Radio','2'=>'Text'])->default(1);
-
+            $form->select('option_type','Option Type')->options(['1'=>'Radio','2'=>'Text','4'=>'Paragraph'])->default(1);
         });
 
         return $form;

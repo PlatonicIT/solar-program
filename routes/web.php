@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 Route::post('survey','SurveyController@received_survey')->name('survey');
 Route::post('validate-zipcode','SurveyController@zipcode_validation')->name('zipcode.validation');
+Route::get('view-page/{id}','FooterMenuController@view_menu_page')->name('view.page');

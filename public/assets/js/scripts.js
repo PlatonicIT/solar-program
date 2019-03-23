@@ -6,7 +6,7 @@
         $('.main-menu').slicknav({
             // prependTo: '.mobile-menu',
             label: '',
-            brand: '<img class="logo" src="../assets/images/logo.png">'
+            brand: '<img class="logo" src="../assets/images/default/logo.png">'
         });
 
     });
