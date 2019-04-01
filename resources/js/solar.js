@@ -1,6 +1,8 @@
 require('./bootstrap');
 window.Vue = require('vue');
 import _ from 'lodash'
+window.axios.defaults.baseURL = process.env.NODE_ENV == 'production' ? process.env.MIX_BASE_URL : 'http://solar-program.test:800';
+
 
 const app = new Vue({
 	el: '#app',
@@ -47,6 +49,11 @@ const app = new Vue({
 		},
 		trueIsActive(){
 			this.isActive = true;
+		},
+		finishSurvey(){
+			$("#surveyModal").modal('hide');
+			$("#surveyModalFinish").modal('show');
 		}
+		
 	},
 });

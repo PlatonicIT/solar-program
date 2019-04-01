@@ -18,12 +18,10 @@
 					<ul class="footer-menu">
 						<!-- <li><a href="{{url('/')}}">Home</a></li> -->
 						@if(\App\Models\FooterMenuPage::all()->count())
-							@foreach (\App\Models\FooterMenuPage::all() as $menu)
-					<li><a target="_blank" href="{{route('view.page',$menu->id)}}">{{$menu->menu_name}}</a></li>
+							@foreach (\App\Models\FooterMenuPage::where('menu_position','bottom')->get() as $menu)
+					<li><a target="_blank" href="{{route('view.page',[snake_case($menu->menu_name,'-'),$menu->id])}}">{{$menu->menu_name}}</a></li>
 							@endforeach
 						@endif
-					
-						
 					</ul>
 				</div>
 			</div>

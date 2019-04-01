@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Models\FooterMenuPage;
+use App\Models\Ebook;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
 use Encore\Admin\Form;
@@ -10,7 +10,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 
-class FooterMenuPageController extends Controller
+class EbookController extends Controller
 {
     use HasResourceActions;
 
@@ -77,28 +77,34 @@ class FooterMenuPageController extends Controller
      *
      * @return Grid
      */
+     public function custom_disable_create()
+     {
+         $row_count = Ebook::all()->count();
+         return $row_count;
+     }
+ 
     protected function grid()
     {
-        $grid = new Grid(new FooterMenuPage);
+        $grid = new Grid(new Ebook);
+        if ($this->custom_disable_create() > 0) {
+            $grid->disableCreateButton();
+        }
+        $grid->disableFilter();
+        $grid->disableExport();
+        $grid->disableRowSelector();
+        $grid->disablePagination();
         $grid->actions(function ($actions) {
             $id = $actions->getKey();
-            $actions->append("<a class='btn btn-sm btn-info' href='footer-menu/{$id}/' style='margin-right: 5px;'><i class='fa fa-eye'> Details</i></a>");
-            $actions->append("<a class='btn btn-sm btn-success' href='footer-menu/{$id}/edit' style='margin-right: 5px;'><i class='fa fa-edit'> Edit</i></a>");
-            $actions->append(new DeleteMenu($id));
+            $actions->append("<a class='btn btn-sm btn-info' href='ebook/{$id}' style='margin-right: 5px;'><i class='fa fa-eye'> Details</i></a>");
+            $actions->append("<a class='btn btn-sm btn-success' href='ebook/{$id}/edit' style='margin-right: 5px;'><i class='fa fa-edit'> Edit</i></a>");
+            $actions->append(new DeleteEbook($id));
 
             $actions->disableEdit();
             $actions->disableView();
             $actions->disableDelete();
         });
-    
-        $grid->menu_name('Menu name');
-        $grid->menu_title('Menu title');
-        $grid->menu_body('Menu Body')->limit(50);
-        $grid->menu_position('Menu Position')->display(function($content){
-            return ucwords($content);
-        });
-        $grid->created_at('Created at');
-        $grid->updated_at('Updated at');
+        $grid->ebook_page_text()->limit(50);
+        $grid->ebook_button_text();
 
         return $grid;
     }
@@ -111,15 +117,12 @@ class FooterMenuPageController extends Controller
      */
     protected function detail($id)
     {
-        $show = new Show(FooterMenuPage::findOrFail($id));
+        $show = new Show(Ebook::findOrFail($id));
 
-    
-        $show->menu_name('Menu name');
-        $show->menu_title('Menu title');
-        $show->menu_position('Menu Position')->as(function($content){
-            return ucwords($content);
-        });
-        $show->menu_body('Menu Body')->unescape();
+       
+        $show->ebook_url('Ebbok File')->file(asset('storage')."/",100,100);
+        $show->ebook_page_text()->unescape();
+        $show->ebook_button_text();
        
 
         return $show;
@@ -132,13 +135,10 @@ class FooterMenuPageController extends Controller
      */
     protected function form()
     {
-        $form = new Form(new FooterMenuPage);
-
-        $form->text('menu_name', 'Menu name')->required()->rules('required|min:2|max:100');
-        $form->text('menu_title', 'Menu title')->required()->rules('required|min:2|max:100');
-        $form->editor('menu_body', 'Menu body')->required()->rules('min:100');
-        $form->select('menu_position','Menu Position')->options(['top'=>'Top','bottom'=>'Bottom'])->required()->rules('max:25|required');
-
+        $form = new Form(new Ebook);
+        $form->editor('ebook_page_text', 'Ebook Page Text')->rules('max:5000');    
+        $form->text('ebook_button_text', 'Button Text')->rules('max:150');   
+        $form->file('ebook_url', 'Upload A File')->uniqueName()->rules('required');
         return $form;
     }
 }

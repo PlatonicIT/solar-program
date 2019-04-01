@@ -93,15 +93,23 @@ class SettingController extends Controller
         $grid->disableExport();
         $grid->disableRowSelector();
         $grid->disablePagination();
+        $grid->actions(function ($actions) {
+            $id = $actions->getKey();
+            $actions->append("<a class='btn btn-sm btn-info' href='setting/{$id}' style='margin-right: 5px;'><i class='fa fa-eye'> Details</i></a>");
+            $actions->append("<a class='btn btn-sm btn-success' href='setting/{$id}/edit' style='margin-right: 5px;'><i class='fa fa-edit'> Edit</i></a>");
+            $actions->append(new DeleteSetting($id));
 
-        $grid->favicon('Favicon Image')->image(asset('storage')."/",100,100);;
-        $grid->background('Background Image')->image(asset('storage'),100,100);;
-        $grid->heading('Home Page Text')->display(function($content){
-            return $content;
+            $actions->disableEdit();
+            $actions->disableView();
+            $actions->disableDelete();
         });
-        $grid->logo('Logo')->image(asset('storage'),100,100);;
-        $grid->copyright('Copyright');
-        
+        $grid->favicon('Favicon Image')->image(asset('storage')."/",50,50);;
+        $grid->background('Background Image')->image(asset('storage'),50,50);;
+        $grid->heading('Home Page Text')->limit(20);
+        $grid->logo('Logo')->image(asset('storage'),50,50);;
+        $grid->copyright('Copyright')->limit(20);
+        $grid->thank_you_message()->limit(20);
+        $grid->button_text()->limit(20);
 
         return $grid;
     }
@@ -122,6 +130,8 @@ class SettingController extends Controller
         $show->heading('Home Page Text')->unescape();
         $show->logo('Logo')->image(asset('storage')."/",100,100);;
         $show->copyright('Copyright');
+        $show->thank_you_message()->unescape();
+        $show->button_text();
        
 
         return $show;
@@ -135,12 +145,17 @@ class SettingController extends Controller
     protected function form()
     {
         $form = new Form(new Setting);
-
-        $form->image('favicon', 'Favicon Image')->uniqueName();
-        $form->image('background', 'Background Image')->uniqueName();
-        $form->editor('heading', 'Home Page Text')->rules('max:500');
-        $form->image('logo', 'Logo')->uniqueName();
-        $form->text('copyright', 'Copyright')->rules('max:150');
+        $form->tab('Main Setting',function($form){
+            $form->image('favicon', 'Favicon Image')->uniqueName();
+            $form->image('background', 'Background Image')->uniqueName();
+            $form->editor('heading', 'Home Page Text')->rules('max:500');
+            $form->image('logo', 'Logo')->uniqueName();
+            $form->text('copyright', 'Copyright')->rules('max:150');
+        })->tab('Thank You Message',function($form){
+            $form->editor('thank_you_message', 'Thank You Message')->rules('max:2000');    
+            $form->text('button_text', 'Button Text')->rules('max:150');    
+        });
+      
 
         return $form;
     }

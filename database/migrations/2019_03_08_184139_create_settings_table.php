@@ -20,6 +20,8 @@ class CreateSettingsTable extends Migration
             $table->string('heading',500)->nullable();
             $table->string('logo')->nullable();
             $table->string('copyright')->nullable();
+            $table->text('thank_you_message')->nullable();
+            $table->string('button_text')->nullable();
             $table->timestamps();
         });
     }

@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    	<!-- Favicon Icon -->
+	@if((isset(\App\Models\Setting::first()->favicon)))
+	<link href="{{ asset('storage')."/".\App\Models\Setting::first()->favicon }}" rel="shortcut icon" type="image/png">
+	@else
+	<link href="{{ asset('assets/images/default/favicon.png') }}" rel="shortcut icon" type="image/png">
+	@endif
     <title>{!!$menu->menu_title!!}</title>
     <style>
         body{width: 70%;margin: 3% auto;position: relative;}
@@ -38,7 +44,7 @@
             <h1> {!!$menu->menu_title!!} </h1>
         </div>
         <div class="close">
-            <a  href="" onclick="self.close()">Close</a>
+            <a  href="#" onclick="self.close()">Home</a>
         </div>
    </section>
   <section>
@@ -48,7 +54,7 @@
   </section>
   <section >
         <div class="footer">
-            <a  href="" onclick="self.close()">Close</a>
+            <a  href="#" onclick="self.close()">Close</a>
         </div>
   </section>
   

@@ -16,6 +16,7 @@ Route::group([
     $router->resource('setting', SettingController::class);
     $router->resource('answer', AnswerController::class);
     $router->resource('footer-menu', FooterMenuPageController::class);
+    $router->resource('ebook', EbookController::class);
     
     $router->get('survey-answer/{id}', 'AnswerController@answer_by_zipcode')->name('answer');
 });

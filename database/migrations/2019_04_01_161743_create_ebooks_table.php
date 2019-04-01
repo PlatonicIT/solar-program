@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFooterMenuPagesTable extends Migration
+class CreateEbooksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateFooterMenuPagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('footer_menu_pages', function (Blueprint $table) {
+        Schema::create('ebooks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('menu_name');
-            $table->string('menu_title');
-            $table->text('menu_body');
-            $table->string('menu_position');
+            $table->text('ebook_page_text')->nullable();
+            $table->string('ebook_button_text')->nullable();
+            $table->string('ebook_url')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateFooterMenuPagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('footer_menu_pages');
+        Schema::dropIfExists('ebooks');
     }
 }
