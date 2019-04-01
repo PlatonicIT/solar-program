@@ -105,6 +105,7 @@ class EbookController extends Controller
         });
         $grid->ebook_page_text()->limit(50);
         $grid->ebook_button_text();
+        $grid->ebook_image()->image(asset('storage'),100,100); 
 
         return $grid;
     }
@@ -123,6 +124,7 @@ class EbookController extends Controller
         $show->ebook_url('Ebbok File')->file(asset('storage')."/",100,100);
         $show->ebook_page_text()->unescape();
         $show->ebook_button_text();
+        $show->ebook_image()->image(asset('storage')."/",100,100); 
        
 
         return $show;
@@ -137,7 +139,8 @@ class EbookController extends Controller
     {
         $form = new Form(new Ebook);
         $form->editor('ebook_page_text', 'Ebook Page Text')->rules('max:5000');    
-        $form->text('ebook_button_text', 'Button Text')->rules('max:150');   
+        $form->text('ebook_button_text', 'Button Text')->rules('max:150');
+        $form->image('ebook_image', 'Ebook Image')->uniqueName();
         $form->file('ebook_url', 'Upload A File')->uniqueName()->rules('required');
         return $form;
     }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 01, 2019 at 05:01 PM
+-- Generation Time: Apr 01, 2019 at 05:41 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.11
 
@@ -830,7 +830,30 @@ INSERT INTO `admin_operation_log` (`id`, `user_id`, `path`, `method`, `ip`, `inp
 (740, 1, 'admin/ebook', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2019-04-01 10:58:47', '2019-04-01 10:58:47'),
 (741, 1, 'admin/footer-menu', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2019-04-01 10:58:50', '2019-04-01 10:58:50'),
 (742, 1, 'admin/question', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2019-04-01 10:58:56', '2019-04-01 10:58:56'),
-(743, 1, 'admin/ebook', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2019-04-01 11:00:00', '2019-04-01 11:00:00');
+(743, 1, 'admin/ebook', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2019-04-01 11:00:00', '2019-04-01 11:00:00'),
+(744, 1, 'admin', 'GET', '127.0.0.1', '[]', '2019-04-01 11:19:06', '2019-04-01 11:19:06'),
+(745, 1, 'admin/ebook', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2019-04-01 11:19:09', '2019-04-01 11:19:09'),
+(746, 1, 'admin/ebook/create', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2019-04-01 11:19:10', '2019-04-01 11:19:10'),
+(747, 1, 'admin/ebook', 'POST', '127.0.0.1', '{\"ebook_page_text\":null,\"ebook_button_text\":null,\"_token\":\"ANyMmQNKOUu319uRygEnhmyXy4L3UF9YIqzgby2W\",\"_previous_\":\"http:\\/\\/solar-program.test:800\\/admin\\/ebook\"}', '2019-04-01 11:19:23', '2019-04-01 11:19:23'),
+(748, 1, 'admin/ebook/create', 'GET', '127.0.0.1', '[]', '2019-04-01 11:19:24', '2019-04-01 11:19:24'),
+(749, 1, 'admin/ebook', 'POST', '127.0.0.1', '{\"ebook_page_text\":null,\"ebook_button_text\":null,\"_token\":\"ANyMmQNKOUu319uRygEnhmyXy4L3UF9YIqzgby2W\"}', '2019-04-01 11:19:38', '2019-04-01 11:19:38'),
+(750, 1, 'admin/ebook', 'GET', '127.0.0.1', '[]', '2019-04-01 11:19:39', '2019-04-01 11:19:39'),
+(751, 1, 'admin/ebook', 'GET', '127.0.0.1', '[]', '2019-04-01 11:19:43', '2019-04-01 11:19:43'),
+(752, 1, 'admin/ebook/3', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2019-04-01 11:19:48', '2019-04-01 11:19:48'),
+(753, 1, 'admin/ebook/3', 'GET', '127.0.0.1', '[]', '2019-04-01 11:20:14', '2019-04-01 11:20:14'),
+(754, 1, 'admin/ebook', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2019-04-01 11:20:19', '2019-04-01 11:20:19'),
+(755, 1, 'admin/ebook/3', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2019-04-01 11:20:20', '2019-04-01 11:20:20'),
+(756, 1, 'admin/ebook', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2019-04-01 11:36:12', '2019-04-01 11:36:12'),
+(757, 1, 'admin/ebook/3', 'GET', '127.0.0.1', '[]', '2019-04-01 11:36:12', '2019-04-01 11:36:12'),
+(758, 1, 'admin/ebook', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2019-04-01 11:36:27', '2019-04-01 11:36:27'),
+(759, 1, 'admin/ebook', 'GET', '127.0.0.1', '[]', '2019-04-01 11:36:30', '2019-04-01 11:36:30'),
+(760, 1, 'admin/ebook/3/edit', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2019-04-01 11:36:41', '2019-04-01 11:36:41'),
+(761, 1, 'admin/ebook/3', 'PUT', '127.0.0.1', '{\"ebook_page_text\":null,\"ebook_button_text\":null,\"_token\":\"ANyMmQNKOUu319uRygEnhmyXy4L3UF9YIqzgby2W\",\"_method\":\"PUT\",\"_previous_\":\"http:\\/\\/solar-program.test:800\\/admin\\/ebook\"}', '2019-04-01 11:36:52', '2019-04-01 11:36:52'),
+(762, 1, 'admin/ebook', 'GET', '127.0.0.1', '[]', '2019-04-01 11:36:53', '2019-04-01 11:36:53'),
+(763, 1, 'admin/ebook/3', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2019-04-01 11:36:55', '2019-04-01 11:36:55'),
+(764, 1, 'admin/ebook', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2019-04-01 11:36:58', '2019-04-01 11:36:58'),
+(765, 1, 'admin/ebook/3', 'DELETE', '127.0.0.1', '{\"_method\":\"delete\",\"_token\":\"ANyMmQNKOUu319uRygEnhmyXy4L3UF9YIqzgby2W\"}', '2019-04-01 11:38:58', '2019-04-01 11:38:58'),
+(766, 1, 'admin/ebook', 'GET', '127.0.0.1', '{\"_pjax\":\"#pjax-container\"}', '2019-04-01 11:38:58', '2019-04-01 11:38:58');
 
 -- --------------------------------------------------------
 
@@ -994,6 +1017,7 @@ CREATE TABLE `ebooks` (
   `ebook_page_text` text COLLATE utf8mb4_unicode_ci,
   `ebook_button_text` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ebook_url` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ebook_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1319,7 +1343,7 @@ ALTER TABLE `admin_menu`
 -- AUTO_INCREMENT for table `admin_operation_log`
 --
 ALTER TABLE `admin_operation_log`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=744;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=767;
 
 --
 -- AUTO_INCREMENT for table `admin_permissions`
@@ -1343,7 +1367,7 @@ ALTER TABLE `admin_users`
 -- AUTO_INCREMENT for table `ebooks`
 --
 ALTER TABLE `ebooks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `footer_menu_pages`

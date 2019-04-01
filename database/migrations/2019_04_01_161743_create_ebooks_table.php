@@ -18,6 +18,7 @@ class CreateEbooksTable extends Migration
             $table->text('ebook_page_text')->nullable();
             $table->string('ebook_button_text')->nullable();
             $table->string('ebook_url')->nullable();
+            $table->string('ebook_image')->nullable();
             $table->timestamps();
         });
     }

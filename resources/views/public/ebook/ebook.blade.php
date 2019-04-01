@@ -4,6 +4,7 @@
 <style>
 
     .ebook{margin-top: 50px}
+    .ebook_img img{margin-bottom: 20px}
     .dynamic h1,h2,h4,h5,h6,strong{
 	margin-bottom: 15px;
 	color:#000 !important
@@ -83,7 +84,14 @@
                 </div>
             </div>
             <div class="col-md-6 col-sm-6 col-lg-6">
+                <div class="ebook_img">
+                         
+            @if((isset(\App\Models\Ebook::first()->ebook_image)))
+            <img src="{{ asset('storage/'.\App\Models\Ebook::first()->ebook_image) }}" alt="Download a free ebook">
+            @else
             <img src="{{ asset('assets/images/default/ebook.png') }}" alt="Download a free ebook">
+            @endif
+                </div>
             </div>
        </div>
    </div>
