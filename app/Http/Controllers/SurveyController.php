@@ -11,6 +11,7 @@ class SurveyController extends Controller
         $survey->survey = $request->answer;
         $survey->zipcode = $request->zipcode;
         $survey->save();
+        
         return back()->with('success','Thanks for Your Participation');
 //        return response()->json($survey->toArray());
     }

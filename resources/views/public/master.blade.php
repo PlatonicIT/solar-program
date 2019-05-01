@@ -6,15 +6,41 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="author" content="csesumonpro">
+	<!-- For Google -->
+<meta name="description" content="Solar Program" />
+<meta name="keywords" content="Solar Program" />
+<meta name="copyright" content="Solar Program" />
+<meta name="application-name" content="Solar Program" />
+
+<!-- For Facebook -->
+<meta property="og:title" content="Solar Program" />
+<meta property="og:type" content="services" />
+@if((isset(\App\Models\Setting::first()->logo)))
+<meta property="og:image" content="{{ asset('storage')."/".\App\Models\Setting::first()->logo }}" />
+@else
+<meta property="og:image" content="{{ asset('assets/images/default/logo.png') }}" />
+@endif
+<meta property="og:url" content="//programassolares.com" />
+<meta property="og:description" content="Solar Program" />
+
+<!-- For Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Solar Program" />
+<meta name="twitter:description" content="Solar Program" />
+@if((isset(\App\Models\Setting::first()->logo)))
+<meta name="twitter:image"  content="{{ asset('storage')."/".\App\Models\Setting::first()->logo }}" />
+@else
+<meta name="twitter:image"  content="{{ asset('assets/images/default/logo.png') }}" />
+@endif
 
 	<!-- Site Title -->
 	<title>@yield('title','Home - Solar Program')</title>
 
 	<!-- Favicon Icon -->
 	@if((isset(\App\Models\Setting::first()->favicon)))
-	<link href="{{ asset('storage')."/".\App\Models\Setting::first()->favicon }}" rel="shortcut icon" type="image/png">
+	<link href="{{ asset('storage')."/".\App\Models\Setting::first()->favicon }}" rel="shortcut icon" type="image/ico">
 	@else
-	<link href="{{ asset('assets/images/default/favicon.png') }}" rel="shortcut icon" type="image/png">
+	<link href="{{ asset('assets/images/default/favicon.ico') }}" rel="shortcut icon" type="image/ico">
 	@endif
 	
 	
@@ -46,13 +72,12 @@
 			font-size: 15px;
 			padding: 0 8px;
 		}
-	#app{background: #ffffff}
 	</style>
 	@stack('css')
 	<style>
 .thank_you h1,h2,h4,h5,h6,strong{
 	margin-bottom: 15px;
-	color:#000000 !important
+	color:#000000;
 }
 	</style>
 </head>
@@ -145,14 +170,16 @@
 										</ul>
 
 										@if($loop->index==0)
-											<a class="action-button " href="{{url('/')}}">back</a>
+											<a class="action-button previous_button" href="{{url('/')}}">Anterio</a>
 										@else
-											<button @click.prevent="trueIsActive"  type="button"  class="action-button previous previous_button">Back</button>
+											<button @click.prevent="trueIsActive"  type="button"  class="action-button previous previous_button">Anterio</button>
 										@endif
 										@if($loop->last)
-											<button  @click.prevent="finishSurvey" class="action-button">Finish</button>
+											{{-- <button  @click.prevent="finishSurvey" class="action-button">Someter</button> --}}
+											
+											 <button type="submit" class="action-button">Finish</button>
 										@else
-											<button @click.prevent="flaseIsActive" type="button" :class="!isActive ? 'invalid' : 'valid' "  class="next action-button">Continue</button>
+											<button @click.prevent="flaseIsActive" type="button" :class="!isActive ? 'invalid' : 'valid' "  class="next action-button">Continuar</button>
 										@endif
 									</fieldset>
 								@endforeach
@@ -169,42 +196,7 @@
 	{{-- Finish Modal --}}
 <!-- Modal -->
 {{-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#surveyModalFinish">Open Modal</button> --}}
-<div  class="modal fade" id="surveyModalFinish" tabindex="-1" role="dialog" aria-labelledby="surveyModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered modal-lg-custom" role="document">
-			<div class="modal-content">
-				<div class="modal-header align-items-center">
-					
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="thank_you">
-							@if((isset(\App\Models\Setting::first()->thank_you_message)))
-							{!!\App\Models\Setting::first()->thank_you_message!!}
-							@else
-							<h4 class="text-center" style="color:#000!important">Thank you for your interest in Solar Security! </h4>
-							<p class="text-justify">
-									We have already received your information and we are assigning one of our experts who will contact you as soon as possible: We ask you to keep an eye on the phone. 
-									We invite you to watch our videos and learn about the solar experience of people like you.
-							</p>
-							@endif
-
-							<div class="text-center">
-							<a href="{{route('ebook')}}" class="btn btn-primary">
-									@if((isset(\App\Models\Setting::first()->button_text)))
-									{!!\App\Models\Setting::first()->button_text!!}
-									@else
-									Download A Free Ebook
-									@endif
-									
-								</a>
-							</div>
-					</div>	
-				</div>
-			</div>
-		</div>
-	</div>
+{{-- Cut Modal From Here --}}
 
 
 </div>

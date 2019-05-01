@@ -75,7 +75,13 @@ SMALL MOBILE LAYOUT : 320px.
     }
 
     .multi_step_form #msform {
-        min-height: 320px;
+        min-height: 200px;
+    }
+    .multi_step_form #msform .action-button {
+        margin-top: 1rem;
+        padding: 10px 20px;
+        min-width: unset;
+        line-height: inherit;
     }
     
 }
@@ -85,6 +91,13 @@ SMALL MOBILE LAYOUT : 320px.
 LARGE MOBILE LAYOUT: 480px.
 =========================*/
 
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-    
+@media only screen and (max-width: 480px) {
+    .multi_step_form #msform .action-button {
+        font-size: 90%;
+        padding: 7px 16px;
+    }
+
+    .multi_step_form #msform {
+        min-height: 175px;
+    }
 }

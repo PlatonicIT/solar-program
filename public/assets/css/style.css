@@ -68,7 +68,7 @@ input[type=text], input[type=email] {
     font-size: 16px;
     height: 44px;
     margin: 0;
-    padding: 9px 19px;
+    /*padding: 8px;*/
     transition: border-color .15s ease;
     width: 100%;
 }
@@ -162,12 +162,12 @@ input[type=text]+input[type=text], input+input[type=email] {
 }
 
 .slicknav_menu {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
     z-index: 9;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.5);
     display: none;
 }
 
@@ -181,7 +181,7 @@ input[type=text]+input[type=text], input+input[type=email] {
 
 .slicknav_btn {
     margin: 0;
-    padding: 25px 15px;
+    padding: 17px 15px;
     background-color: transparent;
 }
 .slicknav_btn .slicknav_icon-bar+.slicknav_icon-bar {
@@ -288,7 +288,7 @@ input[type=text]+input[type=text], input+input[type=email] {
 .banner-wrap {
     margin-top: 10px;
 }
-.banner-wrap::after {
+#app::after {
     position: absolute;
     z-index: -1;
     content: '';
@@ -337,15 +337,16 @@ input[type=text]+input[type=text], input+input[type=email] {
 .quote-box input {
     display: block;
     width: 100%;
-    margin: 30px 0;
+    /*margin: 30px 0;*/
+    margin: 10px 0px 25px;
     text-align: center;
 }
 
 .quote-box [class*="text-"] {
     font-size: 80%;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     position: relative;
-    margin-bottom: -12px;
+    /*margin-bottom: -12px;*/
     font-weight: 300;
 }
 
@@ -400,11 +401,6 @@ input[type=text]+input[type=text], input+input[type=email] {
 
 
 @media only screen and (max-width: 767px) {
-    .slicknav_menu {
-        position: unset;
-        left: unset;
-        top: unset;
-    }
     .slicknav_menu img {
         width: 175px;
     }
@@ -418,8 +414,8 @@ input[type=text]+input[type=text], input+input[type=email] {
         font-size: 15px;
     }
     #app {
-        height: calc(100% - 74px);
-        min-height: calc(100vh - 74px);
+        /*height: calc(100% - 74px);*/
+        /*min-height: calc(100vh - 74px);*/
     }
     .banner-wrap {
         display: flex;

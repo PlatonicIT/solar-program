@@ -28,7 +28,7 @@
 
 @endpush
 
-@section('title',"Home - Solar Program")
+@section('title',"Inicio | Programas Solares")
 
 @section('content')
 	<!-- Banner -->
@@ -42,24 +42,58 @@
 					</div>
 				@else
 					<h3>
-						<p>Find out if you qualify to get solar without any cost!</p>
-						<p>It only takes 30 seconds.</p>
+						Descubra si califica para paneles solares sin costo alguno!
 					</h3>
 				@endif
 					<div class="quote-box">
-						
 						@if(Session::get('success'))
-							<p class="text-success" id="notice">{{Session::get('success')}}</p>
-						@endif
+						<div  class="" id="surveyModalFinish" tabindex="-1" role="dialog" aria-labelledby="surveyModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered modal-lg-custom" role="document">
+							<div class="modal-content">
+								<div class="modal-header align-items-center">
+									
+									<a  href="{{url('/')}}" type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</a>
+								</div>
+								<div class="modal-body">
+									<div class="thank_you">
+											<img src="/assets/images/logo.png"/>
+											@if((isset(\App\Models\Setting::first()->thank_you_message)))
+											{!!\App\Models\Setting::first()->thank_you_message!!}
+											@else
+											<h4 class="text-center" style="color:#000!important">Thank you for your interest in Solar Security! </h4>
+											<p class="text-justify">
+													We have already received your information and we are assigning one of our experts who will contact you as soon as possible: We ask you to keep an eye on the phone. 
+													We invite you to watch our videos and learn about the solar experience of people like you.
+											</p>
+											@endif
 
+											<div class="text-center">
+											<a href="{{route('ebook')}}" class="btn btn-primary">
+													@if((isset(\App\Models\Setting::first()->button_text)))
+													{!!\App\Models\Setting::first()->button_text!!}
+													@else
+													Download A Free Ebook
+													@endif
+													
+												</a>
+											</div>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+						
+					@else	
 						<p class="text-danger" v-if="error">@{{ error }} </p>
-
+                        <p>Solo toma 30 segundos</p>
 						<div class="zipCodeDiv">
-							<input id="zipcode"  name="zipcode" v-model="zipcode" type="text" placeholder="Enter your zip code">
+							<input id="zipcode"  name="zipcode" v-model="zipcode" type="text" placeholder="Ingrese su codigo postal">
 						</div>
 
-						<button @click="surVey" type="button" class="button">Get Started</button>
-						
+						<button @click="surVey" type="button" class="button">Empezar</button>
+					@endif	
 					</div>
 				</div>
 			</div>

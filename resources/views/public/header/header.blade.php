@@ -15,10 +15,11 @@
 
 				<div class="col-md-9 text-right">
 					<ul class="main-menu">
-						<li><a href="./">home</a></li>
+						<li><a href="{{url('/')}}">Inicio</a></li>
+						<li><a href="{{route('ebook')}}">Libro electronico</a></li>
 						@if(\App\Models\FooterMenuPage::all()->count())
 							@foreach (\App\Models\FooterMenuPage::where('menu_position','top')->get() as $menu)
-					<li><a target="_blank" href="{{route('view.page',[snake_case($menu->menu_name,'-'),$menu->id])}}">{{$menu->menu_name}}</a></li>
+					<li><a  href="{{route('view.page',[snake_case($menu->menu_name,'-'),$menu->id])}}">{{$menu->menu_name}}</a></li>
 							@endforeach
 						@endif
 					</ul>

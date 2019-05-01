@@ -1,7 +1,7 @@
 require('./bootstrap');
 window.Vue = require('vue');
 import _ from 'lodash'
-window.axios.defaults.baseURL = process.env.NODE_ENV == 'production' ? process.env.MIX_BASE_URL : 'http://solar-program.test:800';
+window.axios.defaults.baseURL = process.env.NODE_ENV == 'production' ? process.env.MIX_BASE_URL : 'http://127.0.0.1:8000';
 
 
 const app = new Vue({
@@ -23,7 +23,7 @@ const app = new Vue({
 				$("#surveyModal").modal('show');
 			}).catch(function(error) {
 				if (error.response.status == 422){
-					outerThis.error = "Invalid Response";
+					outerThis.error = "Respuesta inválida";
 				}
 
 			})
@@ -51,8 +51,8 @@ const app = new Vue({
 			this.isActive = true;
 		},
 		finishSurvey(){
-			$("#surveyModal").modal('hide');
-			$("#surveyModalFinish").modal('show');
+			// $("#surveyModal").modal('hide');
+			// $("#surveyModalFinish").modal('show');
 		}
 		
 	},

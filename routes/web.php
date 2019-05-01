@@ -19,4 +19,4 @@ Route::get('/', function () {
 Route::post('survey','SurveyController@received_survey')->name('survey');
 Route::post('validate-zipcode','SurveyController@zipcode_validation')->name('zipcode.validation');
 Route::get('{page}/{id}','FooterMenuController@view_menu_page')->name('view.page');
-Route::view('ebook','public/ebook/ebook')->name('ebook');
+Route::view(env('EBOOK_URL'),'public/ebook/ebook')->name('ebook');

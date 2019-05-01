@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     	<!-- Favicon Icon -->
 	@if((isset(\App\Models\Setting::first()->favicon)))
-	<link href="{{ asset('storage')."/".\App\Models\Setting::first()->favicon }}" rel="shortcut icon" type="image/png">
+	<link href="{{ asset('storage')."/".\App\Models\Setting::first()->favicon }}" rel="shortcut icon" type="image/ico">
 	@else
-	<link href="{{ asset('assets/images/default/favicon.png') }}" rel="shortcut icon" type="image/png">
+	<link href="{{ asset('assets/images/default/favicon.ico') }}" rel="shortcut icon" type="image/ico">
 	@endif
     <title>{!!$menu->menu_title!!}</title>
     <style>
@@ -44,7 +44,11 @@
             <h1> {!!$menu->menu_title!!} </h1>
         </div>
         <div class="close">
-            <a  href="#" onclick="self.close()">Home</a>
+            @if($menu->menu_position=='top')
+             <a  href="{{url('/')}}">Inicio</a>
+            @else
+              <a  href="#"  onclick="self.close()">Inicio</a>
+            @endif
         </div>
    </section>
   <section>
@@ -54,7 +58,11 @@
   </section>
   <section >
         <div class="footer">
-            <a  href="#" onclick="self.close()">Close</a>
+              @if($menu->menu_position=='top')
+            <a  href="{{url('/')}}">Inicio</a>
+            @else
+              <a  href="#"  onclick="self.close()">Inicio</a>
+            @endif
         </div>
   </section>
   

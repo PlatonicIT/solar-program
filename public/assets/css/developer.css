@@ -3,7 +3,9 @@
 .main-footer{display:none}
 
 /*Answer Page Css*/
-
+#app {
+    background-color: #ffffff;
+}
 
 .faq_section{
     margin:40px auto;
@@ -34,4 +36,66 @@
 }
 #other{
     display: none;
+}
+#surveyModal {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.thank_you {
+    text-align: center;
+    padding: 30px;
+}
+
+.thank_you p {
+    margin: 1.5rem 0;
+}
+.ebook .gigzug {
+    margin: 1.5rem 0;
+}
+
+.ebook_img img {
+    margin-bottom: 0;
+    max-height: 500px;
+}
+
+.ebook .download_btn {
+    padding-bottom: 30px;
+}
+.ebook .static p {
+    color: #efefef;
+}
+.static h3 {
+    color: #fff;
+}
+.static h2 {
+    color: #ff9300!important;
+    margin-bottom: 0;
+}
+.ebook .download_btn a {
+    color: #ff9300;
+}
+
+.ebook .download_btn:hover a {
+    border-color: #ff9300;
+    color: #fff;
+    background: #ff9300;
+}
+.slicknav_nav {
+    background-color: rgba(6, 158, 224, 0.52);
+    margin: -5px;
+}
+.modal-backdrop.show {
+    display: none!important;
+}
+@media screen and (max-width: 767px) {
+    #app {
+    z-index: 1;
+    padding-top: 74px;
+    }
+        .thank_you {
+        padding: 0;
+    }
+    
+    .thank_you h2 {
+        font-size: 1.4rem;
+    }
 }
