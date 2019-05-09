@@ -1,7 +1,7 @@
 require('./bootstrap');
 window.Vue = require('vue');
 import _ from 'lodash'
-window.axios.defaults.baseURL = process.env.NODE_ENV == 'production' ? process.env.MIX_BASE_URL : 'http://127.0.0.1:8000';
+//window.axios.defaults.baseURL = process.env.NODE_ENV == 'production' ? process.env.MIX_BASE_URL : 'http://127.0.0.1:8000';
 
 
 const app = new Vue({
@@ -16,9 +16,16 @@ const app = new Vue({
 	methods: {
 		surVey() {
 			let outerThis = this;
-			axios.post('/validate-zipcode', {
-				zipcode: this.zipcode
-			}).then(function(response) {
+			 let data = JSON.stringify({
+				zipcode: this.zipcode,
+			})
+			  axios.post('/validate-zipcode', data, {
+				headers: {
+					'Content-Type': 'application/json',
+					 "Access-Control-Allow-Origin": "*",
+				}
+			})
+			.then(function(response) {
 				outerThis.error = '';
 				$("#surveyModal").modal('show');
 			}).catch(function(error) {
