@@ -34,6 +34,8 @@
     color: #000000;
     padding-left:30px;
 }
+
+
 #other{
     display: none;
 }
@@ -47,6 +49,11 @@
 
 .thank_you p {
     margin: 1.5rem 0;
+    font-size: 1rem;
+}
+
+.close{
+    line-height: .7;
 }
 .ebook .gigzug {
     margin: 1.5rem 0;
