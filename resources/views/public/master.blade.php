@@ -5,36 +5,28 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<meta name="author" content="csesumonpro">
+	<meta name="author" content="PlatonicIT">
 	<!-- For Google -->
-<meta name="description" content="Solar Program" />
-<meta name="keywords" content="Solar Program" />
-<meta name="copyright" content="Solar Program" />
-<meta name="application-name" content="Solar Program" />
+    <meta name="description" content="Programas Solares" />
+    <meta name="keywords" content="Programas Solares" />
+    <meta name="copyright" content="Programas Solares" />
+    <meta name="application-name" content="Programas Solares" />
 
 <!-- For Facebook -->
-<meta property="og:title" content="Solar Program" />
-<meta property="og:type" content="services" />
-@if((isset(\App\Models\Setting::first()->logo)))
-<meta property="og:image" content="{{ asset('storage')."/".\App\Models\Setting::first()->logo }}" />
-@else
-<meta property="og:image" content="{{ asset('assets/images/default/logo.png') }}" />
-@endif
-<meta property="og:url" content="//programassolares.com" />
-<meta property="og:description" content="Solar Program" />
+    <meta property="og:title" content="Programas Solares" />
+    <meta property="og:type" content="services" />
+    <meta property="og:image" content="{{ asset('assets/images/default/programassolares.png') }}" />
+    <meta property="og:url" content="https://programassolares.com" />
+    <meta property="og:description" content="Programas Solares" />
 
 <!-- For Twitter -->
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Solar Program" />
-<meta name="twitter:description" content="Solar Program" />
-@if((isset(\App\Models\Setting::first()->logo)))
-<meta name="twitter:image"  content="{{ asset('storage')."/".\App\Models\Setting::first()->logo }}" />
-@else
-<meta name="twitter:image"  content="{{ asset('assets/images/default/logo.png') }}" />
-@endif
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Programas Solares" />
+    <meta name="twitter:description" content="Programas Solares" />
+    <meta name="twitter:image"  content="{{ asset('assets/images/default/programassolares.png') }}" />
 
 	<!-- Site Title -->
-	<title>@yield('title','Home - Solar Program')</title>
+	<title>@yield('title','Inicio | Programas Solares')</title>
 
 	<!-- Favicon Icon -->
 	@if((isset(\App\Models\Setting::first()->favicon)))
@@ -75,10 +67,10 @@
 	</style>
 	@stack('css')
 	<style>
-.thank_you h1,h2,h4,h5,h6,strong{
-	margin-bottom: 15px;
-	color:#000000;
-}
+        .thank_you h1,h2,h4,h5,h6,strong{
+        	margin-bottom: 15px;
+        	color:#000000;
+        }
 	</style>
 </head>
 <body >
@@ -177,7 +169,7 @@
 										@if($loop->last)
 											{{-- <button  @click.prevent="finishSurvey" class="action-button">Someter</button> --}}
 											
-											 <button type="submit" class="action-button">Finish</button>
+											 <button type="submit" class="action-button">Someter</button>
 										@else
 											<button @click.prevent="flaseIsActive" type="button" :class="!isActive ? 'invalid' : 'valid' "  class="next action-button">Continuar</button>
 										@endif

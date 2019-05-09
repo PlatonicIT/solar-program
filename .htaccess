@@ -10,8 +10,14 @@
     RewriteRule ^ ^$1 [N]
 
     RewriteCond %{REQUEST_URI} (\.\w+$) [NC]
+<<<<<<< HEAD
     RewriteRule ^(.*)$ public/$1 
 
+=======
+
+    RewriteRule ^(.*)$ public/$1 
+  
+>>>>>>> 8e8e7047af7935eb880cb2e39f417d28c472879b
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ server.php

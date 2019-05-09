@@ -45,9 +45,8 @@
 						Descubra si califica para paneles solares sin costo alguno!
 					</h3>
 				@endif
-					<div class="quote-box">
-						@if(Session::get('success'))
-						<div  class="" id="surveyModalFinish" tabindex="-1" role="dialog" aria-labelledby="surveyModalLabel" aria-hidden="true">
+				    @if(Session::get('success'))
+				    <div  class="" id="surveyModalFinish" tabindex="-1" role="dialog" aria-labelledby="surveyModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered modal-lg-custom" role="document">
 							<div class="modal-content">
 								<div class="modal-header align-items-center">
@@ -62,10 +61,9 @@
 											@if((isset(\App\Models\Setting::first()->thank_you_message)))
 											{!!\App\Models\Setting::first()->thank_you_message!!}
 											@else
-											<h4 class="text-center" style="color:#000!important">Thank you for your interest in Solar Security! </h4>
 											<p class="text-justify">
-													We have already received your information and we are assigning one of our experts who will contact you as soon as possible: We ask you to keep an eye on the phone. 
-													We invite you to watch our videos and learn about the solar experience of people like you.
+													Muchas gracias por su tiempo. Uno de nuestros asesores de energía se comunicara con usted dentro de las próximas 24 horas. 
+													Por ahora puede descargar nuestro libro electrónico gratuito y aprender sobre los 10 mitos de paneles solares.
 											</p>
 											@endif
 
@@ -74,7 +72,7 @@
 													@if((isset(\App\Models\Setting::first()->button_text)))
 													{!!\App\Models\Setting::first()->button_text!!}
 													@else
-													Download A Free Ebook
+													Descarga aquí
 													@endif
 													
 												</a>
@@ -84,8 +82,8 @@
 							</div>
 						</div>
 					</div>
-						
-					@else	
+				    @else
+					<div class="quote-box">
 						<p class="text-danger" v-if="error">@{{ error }} </p>
                         <p>Solo toma 30 segundos</p>
 						<div class="zipCodeDiv">
@@ -93,8 +91,9 @@
 						</div>
 
 						<button @click="surVey" type="button" class="button">Empezar</button>
-					@endif	
+				
 					</div>
+					@endif
 				</div>
 			</div>
 		</div>
