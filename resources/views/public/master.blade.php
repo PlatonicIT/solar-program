@@ -169,7 +169,7 @@
 										@if($loop->last)
 											{{-- <button  @click.prevent="finishSurvey" class="action-button">Someter</button> --}}
 											
-											 <button type="submit" class="action-button">Someter</button>
+											 <button type="submit" :class="!isActive ? 'invalid' : 'valid' " class="action-button">Someter</button>
 										@else
 											<button @click.prevent="flaseIsActive" type="button" :class="!isActive ? 'invalid' : 'valid' "  class="next action-button">Continuar</button>
 										@endif
